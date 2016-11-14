@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.ReportMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.Report" >
+    <id column="orderid" property="orderid" jdbcType="CHAR" />
+    <result column="rname" property="rname" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="provice" property="provice" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="lefteye" property="lefteye" jdbcType="CHAR" />
+    <result column="righteye" property="righteye" jdbcType="CHAR" />
+    <result column="anaphylactogen" property="anaphylactogen" jdbcType="VARCHAR" />
+    <result column="heredity_history" property="heredityHistory" jdbcType="VARCHAR" />
+    <result column="diseas_history" property="diseasHistory" jdbcType="VARCHAR" />
+    <result column="report_url" property="reportUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderid, rname, gender, birthday, provice, city, lefteye, righteye, anaphylactogen, 
+    heredity_history, diseas_history, report_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbreport
+    where orderid = #{orderid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbreport
+    where orderid = #{orderid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.Report" >
+    insert into tbreport (orderid, rname, gender, 
+      birthday, provice, city, 
+      lefteye, righteye, anaphylactogen, 
+      heredity_history, diseas_history, report_url
+      )
+    values (#{orderid,jdbcType=CHAR}, #{rname,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{provice,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{lefteye,jdbcType=CHAR}, #{righteye,jdbcType=CHAR}, #{anaphylactogen,jdbcType=VARCHAR}, 
+      #{heredityHistory,jdbcType=VARCHAR}, #{diseasHistory,jdbcType=VARCHAR}, #{reportUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.Report" >
+    insert into tbreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="rname != null" >
+        rname,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="provice != null" >
+        provice,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="lefteye != null" >
+        lefteye,
+      </if>
+      <if test="righteye != null" >
+        righteye,
+      </if>
+      <if test="anaphylactogen != null" >
+        anaphylactogen,
+      </if>
+      <if test="heredityHistory != null" >
+        heredity_history,
+      </if>
+      <if test="diseasHistory != null" >
+        diseas_history,
+      </if>
+      <if test="reportUrl != null" >
+        report_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="rname != null" >
+        #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="provice != null" >
+        #{provice,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="lefteye != null" >
+        #{lefteye,jdbcType=CHAR},
+      </if>
+      <if test="righteye != null" >
+        #{righteye,jdbcType=CHAR},
+      </if>
+      <if test="anaphylactogen != null" >
+        #{anaphylactogen,jdbcType=VARCHAR},
+      </if>
+      <if test="heredityHistory != null" >
+        #{heredityHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="diseasHistory != null" >
+        #{diseasHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="reportUrl != null" >
+        #{reportUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.Report" >
+    update tbreport
+    <set >
+      <if test="rname != null" >
+        rname = #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="provice != null" >
+        provice = #{provice,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="lefteye != null" >
+        lefteye = #{lefteye,jdbcType=CHAR},
+      </if>
+      <if test="righteye != null" >
+        righteye = #{righteye,jdbcType=CHAR},
+      </if>
+      <if test="anaphylactogen != null" >
+        anaphylactogen = #{anaphylactogen,jdbcType=VARCHAR},
+      </if>
+      <if test="heredityHistory != null" >
+        heredity_history = #{heredityHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="diseasHistory != null" >
+        diseas_history = #{diseasHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="reportUrl != null" >
+        report_url = #{reportUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.Report" >
+    update tbreport
+    set rname = #{rname,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      provice = #{provice,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      lefteye = #{lefteye,jdbcType=CHAR},
+      righteye = #{righteye,jdbcType=CHAR},
+      anaphylactogen = #{anaphylactogen,jdbcType=VARCHAR},
+      heredity_history = #{heredityHistory,jdbcType=VARCHAR},
+      diseas_history = #{diseasHistory,jdbcType=VARCHAR},
+      report_url = #{reportUrl,jdbcType=VARCHAR}
+    where orderid = #{orderid,jdbcType=CHAR}
+  </update>
+</mapper>

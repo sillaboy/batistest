@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.WinnderMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.Winnder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="win_time" property="winTime" jdbcType="TIMESTAMP" />
+    <result column="prize_type" property="prizeType" jdbcType="VARCHAR" />
+    <result column="win_info" property="winInfo" jdbcType="VARCHAR" />
+    <result column="win_times" property="winTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone_num, openid, win_time, prize_type, win_info, win_times
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_winner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_winner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.Winnder" >
+    insert into tb_winner (id, phone_num, openid, 
+      win_time, prize_type, win_info, 
+      win_times)
+    values (#{id,jdbcType=INTEGER}, #{phoneNum,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{winTime,jdbcType=TIMESTAMP}, #{prizeType,jdbcType=VARCHAR}, #{winInfo,jdbcType=VARCHAR}, 
+      #{winTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.Winnder" >
+    insert into tb_winner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phoneNum != null" >
+        phone_num,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="winTime != null" >
+        win_time,
+      </if>
+      <if test="prizeType != null" >
+        prize_type,
+      </if>
+      <if test="winInfo != null" >
+        win_info,
+      </if>
+      <if test="winTimes != null" >
+        win_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null" >
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="winTime != null" >
+        #{winTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prizeType != null" >
+        #{prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="winInfo != null" >
+        #{winInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="winTimes != null" >
+        #{winTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.Winnder" >
+    update tb_winner
+    <set >
+      <if test="phoneNum != null" >
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="winTime != null" >
+        win_time = #{winTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prizeType != null" >
+        prize_type = #{prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="winInfo != null" >
+        win_info = #{winInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="winTimes != null" >
+        win_times = #{winTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.Winnder" >
+    update tb_winner
+    set phone_num = #{phoneNum,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      win_time = #{winTime,jdbcType=TIMESTAMP},
+      prize_type = #{prizeType,jdbcType=VARCHAR},
+      win_info = #{winInfo,jdbcType=VARCHAR},
+      win_times = #{winTimes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

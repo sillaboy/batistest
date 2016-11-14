@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.ConsumMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.Consum" >
+    <id column="consum_id" property="consumId" jdbcType="INTEGER" />
+    <result column="consum_name" property="consumName" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    consum_id, consum_name, price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbconsum
+    where consum_id = #{consumId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbconsum
+    where consum_id = #{consumId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.Consum" >
+    insert into tbconsum (consum_id, consum_name, price
+      )
+    values (#{consumId,jdbcType=INTEGER}, #{consumName,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.Consum" >
+    insert into tbconsum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="consumId != null" >
+        consum_id,
+      </if>
+      <if test="consumName != null" >
+        consum_name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="consumId != null" >
+        #{consumId,jdbcType=INTEGER},
+      </if>
+      <if test="consumName != null" >
+        #{consumName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.Consum" >
+    update tbconsum
+    <set >
+      <if test="consumName != null" >
+        consum_name = #{consumName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+    </set>
+    where consum_id = #{consumId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.Consum" >
+    update tbconsum
+    set consum_name = #{consumName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER}
+    where consum_id = #{consumId,jdbcType=INTEGER}
+  </update>
+</mapper>

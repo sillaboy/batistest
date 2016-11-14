@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.CountMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.Count" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="page_n" property="pageN" jdbcType="VARCHAR" />
+    <result column="touch_time" property="touchTime" jdbcType="INTEGER" />
+    <result column="choose" property="choose" jdbcType="VARCHAR" />
+    <result column="udid" property="udid" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, page_n, touch_time, choose, udid, creat_time, ip, address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.Count" >
+    insert into tb_count (id, page_n, touch_time, 
+      choose, udid, creat_time, 
+      ip, address)
+    values (#{id,jdbcType=INTEGER}, #{pageN,jdbcType=VARCHAR}, #{touchTime,jdbcType=INTEGER}, 
+      #{choose,jdbcType=VARCHAR}, #{udid,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{ip,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.Count" >
+    insert into tb_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pageN != null" >
+        page_n,
+      </if>
+      <if test="touchTime != null" >
+        touch_time,
+      </if>
+      <if test="choose != null" >
+        choose,
+      </if>
+      <if test="udid != null" >
+        udid,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pageN != null" >
+        #{pageN,jdbcType=VARCHAR},
+      </if>
+      <if test="touchTime != null" >
+        #{touchTime,jdbcType=INTEGER},
+      </if>
+      <if test="choose != null" >
+        #{choose,jdbcType=VARCHAR},
+      </if>
+      <if test="udid != null" >
+        #{udid,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.Count" >
+    update tb_count
+    <set >
+      <if test="pageN != null" >
+        page_n = #{pageN,jdbcType=VARCHAR},
+      </if>
+      <if test="touchTime != null" >
+        touch_time = #{touchTime,jdbcType=INTEGER},
+      </if>
+      <if test="choose != null" >
+        choose = #{choose,jdbcType=VARCHAR},
+      </if>
+      <if test="udid != null" >
+        udid = #{udid,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.Count" >
+    update tb_count
+    set page_n = #{pageN,jdbcType=VARCHAR},
+      touch_time = #{touchTime,jdbcType=INTEGER},
+      choose = #{choose,jdbcType=VARCHAR},
+      udid = #{udid,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      ip = #{ip,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

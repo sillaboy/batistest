@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.PrizeMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.Prize" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="active_name" property="activeName" jdbcType="VARCHAR" />
+    <result column="prize_type" property="prizeType" jdbcType="VARCHAR" />
+    <result column="prize_name" property="prizeName" jdbcType="VARCHAR" />
+    <result column="prize_count" property="prizeCount" jdbcType="INTEGER" />
+    <result column="prize_probility" property="prizeProbility" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, active_name, prize_type, prize_name, prize_count, prize_probility, start_time, 
+    end_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_prize
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_prize
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.Prize" >
+    insert into tb_prize (id, active_name, prize_type, 
+      prize_name, prize_count, prize_probility, 
+      start_time, end_time)
+    values (#{id,jdbcType=INTEGER}, #{activeName,jdbcType=VARCHAR}, #{prizeType,jdbcType=VARCHAR}, 
+      #{prizeName,jdbcType=VARCHAR}, #{prizeCount,jdbcType=INTEGER}, #{prizeProbility,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.Prize" >
+    insert into tb_prize
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activeName != null" >
+        active_name,
+      </if>
+      <if test="prizeType != null" >
+        prize_type,
+      </if>
+      <if test="prizeName != null" >
+        prize_name,
+      </if>
+      <if test="prizeCount != null" >
+        prize_count,
+      </if>
+      <if test="prizeProbility != null" >
+        prize_probility,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="activeName != null" >
+        #{activeName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeType != null" >
+        #{prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeName != null" >
+        #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeCount != null" >
+        #{prizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeProbility != null" >
+        #{prizeProbility,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.Prize" >
+    update tb_prize
+    <set >
+      <if test="activeName != null" >
+        active_name = #{activeName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeType != null" >
+        prize_type = #{prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeName != null" >
+        prize_name = #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeCount != null" >
+        prize_count = #{prizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeProbility != null" >
+        prize_probility = #{prizeProbility,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.Prize" >
+    update tb_prize
+    set active_name = #{activeName,jdbcType=VARCHAR},
+      prize_type = #{prizeType,jdbcType=VARCHAR},
+      prize_name = #{prizeName,jdbcType=VARCHAR},
+      prize_count = #{prizeCount,jdbcType=INTEGER},
+      prize_probility = #{prizeProbility,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

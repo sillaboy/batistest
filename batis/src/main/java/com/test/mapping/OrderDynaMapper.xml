@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.OrderDynaMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.OrderDyna" >
+    <result column="orderid" property="orderid" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="abStatus" property="abstatus" jdbcType="INTEGER" />
+    <result column="creatdate" property="creatdate" jdbcType="TIMESTAMP" />
+    <result column="paydate" property="paydate" jdbcType="TIMESTAMP" />
+    <result column="sampledate" property="sampledate" jdbcType="TIMESTAMP" />
+    <result column="senddate" property="senddate" jdbcType="TIMESTAMP" />
+    <result column="confirmdate" property="confirmdate" jdbcType="TIMESTAMP" />
+    <result column="receivedate" property="receivedate" jdbcType="TIMESTAMP" />
+    <result column="reportdate" property="reportdate" jdbcType="TIMESTAMP" />
+    <result column="reportsenddate" property="reportsenddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.test.model.OrderDyna" >
+    insert into tborderdyna (orderid, status, abStatus, 
+      creatdate, paydate, sampledate, 
+      senddate, confirmdate, receivedate, 
+      reportdate, reportsenddate)
+    values (#{orderid,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, #{abstatus,jdbcType=INTEGER}, 
+      #{creatdate,jdbcType=TIMESTAMP}, #{paydate,jdbcType=TIMESTAMP}, #{sampledate,jdbcType=TIMESTAMP}, 
+      #{senddate,jdbcType=TIMESTAMP}, #{confirmdate,jdbcType=TIMESTAMP}, #{receivedate,jdbcType=TIMESTAMP}, 
+      #{reportdate,jdbcType=TIMESTAMP}, #{reportsenddate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.OrderDyna" >
+    insert into tborderdyna
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="abstatus != null" >
+        abStatus,
+      </if>
+      <if test="creatdate != null" >
+        creatdate,
+      </if>
+      <if test="paydate != null" >
+        paydate,
+      </if>
+      <if test="sampledate != null" >
+        sampledate,
+      </if>
+      <if test="senddate != null" >
+        senddate,
+      </if>
+      <if test="confirmdate != null" >
+        confirmdate,
+      </if>
+      <if test="receivedate != null" >
+        receivedate,
+      </if>
+      <if test="reportdate != null" >
+        reportdate,
+      </if>
+      <if test="reportsenddate != null" >
+        reportsenddate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="abstatus != null" >
+        #{abstatus,jdbcType=INTEGER},
+      </if>
+      <if test="creatdate != null" >
+        #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paydate != null" >
+        #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sampledate != null" >
+        #{sampledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senddate != null" >
+        #{senddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmdate != null" >
+        #{confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivedate != null" >
+        #{receivedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportdate != null" >
+        #{reportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportsenddate != null" >
+        #{reportsenddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
